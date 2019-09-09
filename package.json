@@ -1,7 +1,6 @@
 {
   "name": "tp-4",
   "version": "1.0.0",
-  "description": "",
   "main": "index.js",
   "scripts": {
     "start": "node server.js"
@@ -17,6 +16,9 @@
   },
   "homepage": "https://github.com/mercedesaven/tp-4#readme",
   "dependencies": {
-    "express": "4.17.1"
-  }
+    "express": "4.17.1",
+    "npm": "^6.11.3"
+  },
+  "devDependencies": {},
+  "description": ""
 }
