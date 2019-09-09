@@ -1,6 +1,3 @@
-const onLoad = () => {
-    let openModal = document.getElementById('modal')
-  } 
 
 
 //Modal
