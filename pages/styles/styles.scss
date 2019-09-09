@@ -1,5 +1,19 @@
 @import "variables.scss";
 
+@mixin btnStyles {
+  background-color: #015E9A;
+  color: white;
+  text-decoration: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  border:none;
+}
+
+@mixin stylesHover{
+  background-color: #FFFFFF;
+  color: #015E9A;
+}
+
 button {
     border: none;
     background: transparent;
@@ -126,3 +140,73 @@ button {
     }
   }
   
+  //MODAL
+
+.modal{
+  display:none;
+}
+
+.activeModal{
+  background-color: rgba(144, 194, 253, 0.6);
+  width: 100%;
+  top:0;
+  position:fixed;
+  .contain-modal-select{
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+  }
+  .modal-select{
+      background-color: #FFFFFF;
+      width: 40%;
+      padding: 50px 20px;
+      .closeModal{
+          float: right;
+          text-decoration: none;
+          color: #000;
+          font-weight: bold;
+      }
+      .closeModal:hover{
+          cursor: pointer;
+      }
+      .modal-select-text{
+          text-align:center;
+      }
+      .selectors{
+          display: flex;   
+          flex-direction: column;
+          margin: 20px auto;
+      }
+      select{
+          margin: 5px auto;
+          width: 90%;
+          height: 25px;
+      }
+      .container-add{
+          width: 90%;
+          margin: 10px auto;
+          #add{
+              width: 100%;
+              @include btnStyles;
+              background-color: rgb(70, 104, 126);
+          }
+          #add:hover{
+              @include stylesHover;
+          }
+      }
+      .container-confirm{
+          width: 90%;
+          margin: 0 auto;
+          #button{
+              float:right;
+              width:100%;
+              @include btnStyles;
+          }
+          #button:hover{
+              @include stylesHover;
+          }
+      }
+     
+  }
+}
