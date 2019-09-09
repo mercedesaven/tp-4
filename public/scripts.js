@@ -1,7 +1,7 @@
 
 
 //Modal
-
+let openModal = document.getElementById('modal')
 const modal = () => {
     let activeModal = document.getElementById('activeModal')
     activeModal.classList.remove('modal')
