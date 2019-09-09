@@ -17,12 +17,47 @@
             <span>Add new employee</span>
         </a>
         <div class="add-task-input-container">
-            <input type="text" value="" onkeypress="keyPress(event)" placeholder="Ingrese una tarea..." id="item">
+            <input type="text" value="" placeholder="Filter..." id="item">
             <button class="add-task-btn" type="button" id="add" onclick="addTask()"><img src="styles/images/add.svg"
                     alt=""></button>
         </div>
     </header>
-    <div class="tasks-container">
+    <div>
+        <ul>
+            <li><input type="checkbox"></li>
+            <li>Name</li>
+            <li>Email</li>
+            <li>Adress</li>
+            <li>Phone</li>
+            <li>Actions</li>
+        </ul>
+        <ul>
+            <li><input type="checkbox"></li>
+            <li>Yesica</li>
+            <li>Lopez</li>
+            <li>Hidalgo 374</li>
+            <li>+5491163308184</li>
+            <i alt="Edit"></i>
+            <i ald="Delete"></i>
+        </ul>   
+    </div>
+    <section class="modal" id="activeModal" >
+        <div class="contain-modal-select">
+            <div class="modal-select">
+                <a class="closeModal" onclick="closeModal()">x</a>
+                <p class="modal-select-text">Seleccione</p>
+                <div class="selectors" id="modal"></div>
+                <div class="container-add">
+                    <button onclick="addComponent()" type="button" id="add">Agregar componente</button>
+                </div>
+                <div id="pendingSales" class="pendingSales"></div>
+                <div class="container-confirm">
+                    <button type="button" id="button" onclick="addNewSale()">Confirmar</button>
+                </div>
+            </div>
+        </div>
+    </section>  
+    <!-- <div class="tasks-container">
         <div class="pending-task-container">
             <ul id="todo" class="pending-task-list">
             </ul>
@@ -31,6 +66,6 @@
             <ul id="completed" class="completed-task-list">
             </ul>
         </div>
-    </div>
+    </div> -->
 </body>
 </html>
