@@ -49,12 +49,28 @@
                 <a class="closeModal" onclick="closeModal()">x</a>
                 <p class="modal-select-text">Seleccione</p>
                 <div class="selectors" id="modal"></div>
+                <div class="formStyle" id="textForms">
+                    <input id="name" type="name" placeholder="Nombre Completo" />
+                    <input id="email" type="email" placeholder="Email" />
+                    <input
+                      id="area"
+                      type="text"
+                      placeholder="Area de especialización | Materia a cargo"
+                    />
+                    <textarea
+                      id="actividad"
+                      type="text"
+                      placeholder="Sí participaste de alguna actividad de IBM, por favor, indicanos cuál."
+                      class="participation"
+                      rows="10"
+                    ></textarea>
+                  </div>
                 <div class="container-add">
-                    <button onclick="addComponent()" type="button" id="add">Agregar componente</button>
+                    <button onclick="addComponent()" type="button" id="add">Add employee</button>
                 </div>
                 <div id="pendingSales" class="pendingSales"></div>
                 <div class="container-confirm">
-                    <button type="button" id="button" onclick="addNewSale()">Confirmar</button>
+                    <button type="button" id="button" onclick="addNewSale()">Cancel</button>
                 </div>
             </div>
         </div>
