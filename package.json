@@ -4,6 +4,7 @@
   "main": "index.js",
   "scripts": {
     "start": "node server.js",
+    "dev": "nodemon server.js",
     "build-css": "sass pages/styles/styles.scss public/styles/styles.css --watch"
   },
   "repository": {
