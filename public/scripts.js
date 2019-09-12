@@ -40,9 +40,9 @@ const employee = (e) => `
     </li>
   `
 
-/*   const addNewUser = () => {
-    user.unshift({employeeList()})
-  } */
+   const addNewEmployee = () => {
+    user.unshift(user)
+  } 
 
 
 

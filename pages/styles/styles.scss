@@ -1,4 +1,5 @@
-@import "variables.scss";
+@import "_variables.scss";
+@import "_reset.scss";
 
 @mixin btnStyles {
   background-color: #015E9A;
