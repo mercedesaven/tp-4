@@ -226,4 +226,84 @@ input::placeholder {
   font-size: 16px;
 }
 
+.modal {
+  display: none;
+}
+
+.activeModal {
+  background-color: rgba(144, 194, 253, 0.6);
+  width: 100%;
+  top: 0;
+  position: fixed;
+}
+.activeModal .contain-modal-select {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+}
+.activeModal .modal-select {
+  background-color: #FFFFFF;
+  width: 40%;
+  padding: 50px 20px;
+}
+.activeModal .modal-select .closeModal {
+  float: right;
+  text-decoration: none;
+  color: #000;
+  font-weight: bold;
+}
+.activeModal .modal-select .closeModal:hover {
+  cursor: pointer;
+}
+.activeModal .modal-select .modal-select-text {
+  text-align: center;
+}
+.activeModal .modal-select .selectors {
+  display: flex;
+  flex-direction: column;
+  margin: 20px auto;
+}
+.activeModal .modal-select select {
+  margin: 5px auto;
+  width: 90%;
+  height: 25px;
+}
+.activeModal .modal-select .container-add {
+  width: 90%;
+  margin: 10px auto;
+}
+.activeModal .modal-select .container-add #add {
+  width: 100%;
+  background-color: #015E9A;
+  color: white;
+  text-decoration: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  border: none;
+  background-color: #46687e;
+}
+.activeModal .modal-select .container-add #add:hover {
+  background-color: #FFFFFF;
+  color: #015E9A;
+}
+.activeModal .modal-select .container-confirm {
+  width: 90%;
+  margin: 0 auto;
+}
+.activeModal .modal-select .container-confirm #button {
+  float: right;
+  width: 100%;
+  background-color: #015E9A;
+  color: white;
+  text-decoration: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  border: none;
+}
+.activeModal .modal-select .container-confirm #button:hover {
+  background-color: #FFFFFF;
+  color: #015E9A;
+}
+
 /*# sourceMappingURL=styles.css.map */
