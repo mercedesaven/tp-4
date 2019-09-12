@@ -42,14 +42,30 @@
         <div class="contain-modal-select">
             <div class="modal-select">
                 <a class="closeModal" onclick="closeModal()">x</a>
-                <p class="modal-select-text">Seleccione</p>
+                <p class="modal-select-text">Agregar empleado</p>
                 <div class="selectors" id="modal"></div>
+                <div class="formStyle" id="textForms">
+                    <input id="name" type="name" placeholder="Nombre Completo" />
+                    <input id="email" type="email" placeholder="Email" />
+                    <input
+                      id="area"
+                      type="text"
+                      placeholder="Dirección"
+                    />
+                    <textarea
+                      id="actividad"
+                      type="text"
+                      placeholder="Telefono"
+                      class="participation"
+                      rows="10"
+                    ></textarea>
+                  </div>
                 <div class="container-add">
-                    <button onclick="addComponent()" type="button" id="add">Agregar componente</button>
+                    <button onclick="addComponent()" type="button" id="add">Cancelar</button>
                 </div>
                 <div id="pendingSales" class="pendingSales"></div>
                 <div class="container-confirm">
-                    <button type="button" id="button" onclick="addNewSale()">Confirmar</button>
+                    <button type="button" id="button" onclick="addNewSale()">Agregar</button>
                 </div>
             </div>
         </div>
