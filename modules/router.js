@@ -3,7 +3,7 @@ const express = require('express')
 const path = require('path')
 
 
-const user = require('./user')
+const user = require('../api/user')
 const router = express.Router();
 
 
