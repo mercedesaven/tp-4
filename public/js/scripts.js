@@ -16,8 +16,6 @@ const user = [{
   address: 'calle falsa 123',
   phone: '1234568765'
 }
-
-
 ]
 
 const printEmployeeList = (emp) => {
@@ -29,6 +27,7 @@ const printEmployeeList = (emp) => {
 	});
 }    
 
+//Función para que se creen cada uno de los ítems en pantalla?
 const employee = (e) => `
     <li class="employeeName" id="name"> <p>${e.name}</p> </li>
     <li class="employeeEmail" id="email"> <p>${e.email}</p> </li>
@@ -40,17 +39,31 @@ const employee = (e) => `
     </li>
   `
 
-   const addNewEmployee = () => {
+
+  //Comento ésta función porque creo que la que de abajo incluye ésto:
+/*    const newEmployee = () => {
     user.unshift(user)
   } 
+ */
 
+//AGREGAR INPUT DESDE EL MODAL
 
+const addNewEmployee = () => {
+  let input = document.getElementsByClassName('inputText')
+  user = input.value
 
+  if (input.value !== '') {
+    input.value = ''
+    user.unshift({
+      text: user,
+      printEmployeeList();
+    })
+    else {
+    activeMessageAlert.classList.remove('messageAlert');
+    activeMessageAlert.classList.add('activeMessageAlert');
+    }
+}
 
-
-
-
-  
 
 //Modal
 
@@ -65,3 +78,9 @@ const modal = () => {
     closeModal.classList.remove('activeModal')
     closeModal.classList.add('modal')
   }
+
+
+//ACTIONS BUTTONS: "EDITAR" / "ELIMINAR"
+//MODAL "ADVERTENCIA ELIMINAR" 
+//FILTRAR
+

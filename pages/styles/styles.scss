@@ -226,3 +226,13 @@ button {
      
   }
 }
+
+.messageAlert{
+  display:none;
+}
+
+.activeMessageAlert{
+  display:block;
+  color: red;
+  font-size: 1em;
+}

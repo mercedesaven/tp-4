@@ -44,22 +44,17 @@
             <div class="modal-select">
                 <a class="closeModal" onclick="closeModal()">x</a>
                 <p class="modal-select-text">Agregar empleado</p>
+                <div class="messageAlert" id="activeMessageAlert">
+                    <p class="activeMessageAlert">
+                      Por favor, completar todos los campos.
+                    </p>
+                </div>
                 <div class="selectors" id="modal"></div>
                 <div class="formStyle" id="textForms">
-                    <input id="name" type="name" placeholder="Nombre Completo" />
-                    <input id="email" type="email" placeholder="Email" />
-                    <input
-                      id="area"
-                      type="text"
-                      placeholder="Dirección"
-                    />
-                    <textarea
-                      id="actividad"
-                      type="text"
-                      placeholder="Telefono"
-                      class="participation"
-                      rows="10"
-                    ></textarea>
+                    <input id="name" type="name" class="inputText" placeholder="Nombre Completo" />
+                    <input id="email" type="email" class="inputText" placeholder="Email" />
+                    <input id="area" type="text" class="inputText" placeholder="Dirección"/>
+                    <textarea id="actividad" type="text" class="inputText" placeholder="Telefono" class="participation" rows="10"></textarea>
                   </div>
                 <div class="container-add">
                     <button onclick="closeModal()" type="button" id="add">Cancelar</button>
