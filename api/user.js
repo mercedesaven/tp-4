@@ -20,10 +20,10 @@ const user = [{
 
 ]
 
-const middleWare = (req, res, next) => {
+const getUser = (req, res, next) => {
     console.log('pidiendo usuarios')
     res.json({user})
     next()
 }
 
-module.exports = middleWare
+module.exports = getUser
