@@ -21,49 +21,41 @@ time, mark, audio, video {
   text-decoration: none;
 }
 
-button {
-  border: none;
-  background: transparent;
-  cursor: pointer;
-}
-button svg {
-  position: relative;
-  float: left;
-  width: 100%;
-}
-
-ul {
-  margin-block-start: 0;
-  margin-block-end: 0;
-  margin-inline-start: 0;
-  margin-inline-end: 0;
-  text-decoration: none;
-  list-style-type: none;
-  padding: 0;
-}
-
 body {
   font-family: "Raleway", sans-serif;
   margin: 0px;
   color: #333333;
 }
 
-.blank {
-  font-weight: 700;
-  font-size: 16px;
-  color: #0099ff;
-  text-align: center;
-}
-
-.line {
-  text-decoration: line-through;
-}
-
+/* button {
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    svg {
+      @include relative(left);
+    }
+  }
+   */
 h2 {
   font-size: 16px;
 }
 
-input {
+.add-employee-container {
+  /* @include relative(left);
+  padding: 30px 10%;
+  box-sizing: border-box; */
+  width: 90%;
+  margin: auto;
+}
+.add-employee-container h1 {
+  color: #0099ff;
+  margin: 25px 0;
+}
+.add-employee-container .add-employee-input-container {
+  /* @include relative(left); */
+}
+.add-employee-container .add-employee-input-container input {
+  position: relative;
   border: 1px;
   border-color: #c7c7c7;
   width: calc(100% - 20px);
@@ -77,176 +69,62 @@ input {
   color: #333333;
   font-family: "Raleway", sans-serif;
 }
-input::placeholder {
+.add-employee-container .add-employee-input-container input::placeholder {
   color: #c7c7c7;
 }
-
-.tasks-container {
-  position: relative;
-  float: left;
-  width: 100%;
-  background-color: rgba(0, 153, 255, 0.05);
-  height: calc(100vh - 219.27px);
-  overflow: scroll;
-  padding: 25px 10%;
-  width: 100%;
-  box-sizing: border-box;
-}
-
-.add-task-container {
-  position: relative;
-  float: left;
-  width: 100%;
-  padding: 30px 10%;
-  box-sizing: border-box;
-}
-.add-task-container h1 {
-  color: #0099ff;
-  margin: 25px 0;
-}
-.add-task-container .add-task-input-container {
-  position: relative;
-  float: left;
-  width: 100%;
-}
-.add-task-container .add-task-input-container .add-task-input {
-  width: calc(100% - 20px);
-  border-radius: 8px 0 0 8px;
-}
-.add-task-container .add-task-input-container .add-task-btn {
+.add-employee-container .add-employee-input-container .add-employee-btn {
   background-color: #0099ff;
   border-radius: 50%;
   padding: 10px 12px;
   position: absolute;
-  right: 0;
-  bottom: 0;
+  right: 44px;
   width: 40px;
   height: 40px;
 }
 
-.pending-task-container {
-  position: relative;
-  float: left;
-  width: 100%;
+.main-container .title-row ul {
+  display: flex;
+  justify-content: space-evenly;
 }
-.pending-task-container .pending-task-list {
-  position: relative;
-  float: left;
-  width: 100%;
-}
-.pending-task-container .pending-task-list .task {
-  position: relative;
-  float: left;
-  width: 100%;
-  width: 100%;
-  box-sizing: border-box;
-  border-radius: 8px;
-  box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.16);
-  padding: 20px 30px;
-  margin: 20px 0;
-  background-color: #ffffff;
+.main-container .employeeList {
+  background-color: palevioletred;
+  border-radius: 5px;
+  margin: 10px auto;
+  padding: 10px 0;
   align-items: center;
-}
-.pending-task-container .pending-task-list .task .task-text {
-  position: relative;
-  float: left;
-  width: 100%;
-  align-self: flex-start;
-  padding-right: 15px;
-  box-sizing: border-box;
-}
-.pending-task-container .pending-task-list .task .task-text p {
-  margin: 0;
-  text-decoration: none;
-  width: 100%;
-}
-.pending-task-container .pending-task-list .task .task-text input {
-  width: 100%;
-}
-.pending-task-container .pending-task-list .task .task-btns {
-  position: relative;
-  float: right;
-  width: 100%;
-  border-left: 1px solid #c7c7c7;
-  padding-left: 10px;
   align-self: center;
-  width: auto;
+  font-weight: normal;
+  display: flex;
+  justify-content: space-evenly;
 }
-.pending-task-container .pending-task-list .task .task-btns button {
-  margin: 0 5px;
-}
-.pending-task-container .pending-task-list .task .task-text {
-  width: calc(100% - 138.13px);
-}
-
-.completed-task-container {
-  position: relative;
-  float: left;
-  width: 100%;
-  padding-top: 25px;
-  margin-top: 35px;
-  border-top: 1px solid #c7c7c7;
-}
-.completed-task-container .completed-task-list {
-  position: relative;
-  float: left;
-  width: 100%;
-}
-.completed-task-container .completed-task-list .task {
-  position: relative;
-  float: left;
-  width: 100%;
-  width: 100%;
-  box-sizing: border-box;
-  border-radius: 8px;
-  box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.16);
-  padding: 20px 30px;
-  margin: 20px 0;
-  background-color: #ffffff;
-  align-items: center;
-}
-.completed-task-container .completed-task-list .task .task-text {
-  position: relative;
-  float: left;
-  width: 100%;
-  align-self: flex-start;
-  padding-right: 15px;
-  box-sizing: border-box;
-}
-.completed-task-container .completed-task-list .task .task-text p {
-  margin: 0;
-  text-decoration: line-through;
-  width: 100%;
-}
-.completed-task-container .completed-task-list .task .task-text input {
-  width: 100%;
-}
-.completed-task-container .completed-task-list .task .task-btns {
-  position: relative;
+.main-container .deleteBtn {
+  width: 20px;
+  height: 20px;
+  background-repeat: no-repeat;
+  border: 0;
+  background-position: center;
+  border-radius: 50%;
+  background-image: url("images/IconDeleteNew.png");
   float: right;
-  width: 100%;
-  border-left: 1px solid #c7c7c7;
-  padding-left: 10px;
-  align-self: center;
-  width: auto;
+  margin-left: 15px;
+  background-color: red;
 }
-.completed-task-container .completed-task-list .task .task-btns button {
-  margin: 0 5px;
+.main-container .deleteBtn:hover {
+  background-color: #e7e5e5;
 }
-.completed-task-container .completed-task-list .task .task-text {
-  width: calc(100% - 94.31px);
+.main-container .checkBtnColor {
+  width: 20px;
+  height: 20px;
+  background-repeat: no-repeat;
+  border: 0;
+  background-position: center;
+  border-radius: 50%;
+  background-image: url("images/iconcheckcolor.png");
+  float: right;
+  background-color: red;
 }
-
-.no-tasks {
-  position: relative;
-  float: left;
-  width: 100%;
-  color: #0099ff;
-  padding: 50px 0;
-  text-align: center;
-}
-.no-tasks h2 {
-  font-size: 16px;
+.main-container .checkBtnColor:hover {
+  background-color: #e7e5e5;
 }
 
 .modal {
@@ -282,7 +160,7 @@ input::placeholder {
 .activeModal .modal-select .formStyle {
   display: flex;
   flex-direction: column;
-  width: 50%;
+  width: 100%;
 }
 @media (min-width: 320px) and (max-width: 480px) {
   .activeModal .modal-select .formStyle {
@@ -290,17 +168,8 @@ input::placeholder {
   }
 }
 .activeModal .modal-select .formStyle input {
+  width: 100%;
   height: 40px;
-  margin-top: 2%;
-  border-radius: 5px;
-  border: none;
-  padding: 2%;
-  font-size: 0.8em;
-  font-family: "IBM Plex Sans", sans-serif;
-}
-.activeModal .modal-select .formStyle .participation {
-  height: 200px;
-  box-sizing: border-box;
   margin-top: 2%;
   border-radius: 5px;
   border: none;

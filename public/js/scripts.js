@@ -16,13 +16,13 @@ const user = [{
   address: 'calle falsa 123',
   phone: '1234568765'
 }
-
-
 ]
+
+
 
 const printEmployeeList = (emp) => {
   console.log(user)
-  let getEmployee = document.getElementById('newEmployee')
+  let getEmployee = document.getElementById('container')
   getEmployee.innerHTML = '';
   user.forEach((e) => {
 		getEmployee.innerHTML += employee(e);
@@ -30,19 +30,39 @@ const printEmployeeList = (emp) => {
 }    
 
 const employee = (e) => `
-    <li class="employeeName" id="name"> <p>${e.name}</p> </li>
+    <ul class="employeeList" id="newEmployee"> 
+    <li><input type="checkbox"></li>
+    <li class="employeeName checkBtnColor" id="name" onclick="editElement()" > <p>${e.name}</p> </li>
     <li class="employeeEmail" id="email"> <p>${e.email}</p> </li>
-    <li class="employeeAdress" id="adress"> <p>${e.adress}</p> </li>
+    <li class="employeeAdress" id="adress"> <p>${e.address}</p> </li>
     <li class="employeePhone" id="phone"> <p>${e.phone}</p> </li>
     <li class="employeeActions" id="actions">
-      <a>${e.edit}</a>
-      <a>${e.delet}</a>
+      <a class="deleteBtn" onclick="removeElement()"></a>
+      
     </li>
+    </ul>
   `
 
-   const addNewEmployee = () => {
-    user.unshift(user)
-  } 
+  const removeElement =  () => {
+    const elementIndex = document.getElementById('newEmployee')
+    alert("Seguro queres borrar?")
+    elementIndex.remove()
+}
+
+const editElement = () => {
+  let itemName = document.getElementById('name')
+  let item1 = prompt("change something: ")
+  itemName.innerHTML = item1
+}
+
+
+
+
+
+
+
+
+  
 
 
 
@@ -65,3 +85,17 @@ const modal = () => {
     closeModal.classList.remove('activeModal')
     closeModal.classList.add('modal')
   }
+
+  const addNewEmployee = () => {
+/*     let inputModal = document.getElementById('activeModal')
+ */    let inputEmployeeName= document.getElementById('nameModal')
+    let newEmployeeName = inputEmployeeName.value
+    let inputEmployeeEmail= document.getElementById('emailModal')
+    let newEmployeeEmail = inputEmployeeEmail.value
+    user.unshift(
+      {name: newEmployeeName,
+      email: newEmployeeEmail })
+   printEmployeeList()
+  
+   
+ } 

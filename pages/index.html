@@ -12,74 +12,55 @@
 
 </head>
 <body onload='printEmployeeList()'>
-    <header class="add-task-container">
+    <header class="add-employee-container">
         <h1>Manage employee</h1>
         <a href="#" onclick="modal()">
             <i></i>
             <span>Add new employee</span>
         </a>
-        <div class="add-task-input-container">
+        <div class="add-employee-input-container">
             <input type="text" value="" placeholder="Filter..." id="item">
-            <button class="add-task-btn" type="button" id="add" ><img src="styles/images/add.svg"
+            <button class="add-employee-btn" type="button" id="add" ><img src="styles/images/add.svg"
                     alt=""></button>
         </div>
     </header>
     
-    <div>
-        <ul>
-            <li><input type="checkbox"></li>
-            <li>Name</li>
-            <li>Email</li>
-            <li>Adress</li>
-            <li>Phone</li>
-            <li>Actions</li>
-        </ul>
-        <div id='container'>
-            <ul id='newEmployee'>
+    <div class='main-container'>
+        <div class="title-row">  
+            <ul class="employeeList">
+                <li><input type="checkbox"></li>
+                <li>Name</li>
+                <li>Email</li>
+                <li>Adress</li>
+                <li>Phone</li>
+                <li>Actions</li>
+            </ul>
+        </div>
+        <div id='container' class="container-employee">
+            <ul id='newEmployee' class="employeeList">
             </ul>
         </div>   
     </div>
-    <section class="modal" id="activeModal" >
+    <div class="modal" id="activeModal">
         <div class="contain-modal-select">
             <div class="modal-select">
                 <a class="closeModal" onclick="closeModal()">x</a>
                 <p class="modal-select-text">Agregar empleado</p>
-                <div class="selectors" id="modal"></div>
                 <div class="formStyle" id="textForms">
-                    <input id="name" type="name" placeholder="Nombre Completo" />
-                    <input id="email" type="email" placeholder="Email" />
-                    <input
-                      id="area"
-                      type="text"
-                      placeholder="Dirección"
-                    />
-                    <textarea
-                      id="actividad"
-                      type="text"
-                      placeholder="Telefono"
-                      class="participation"
-                      rows="10"
-                    ></textarea>
-                  </div>
+                    <input id="nameModal" type="text" placeholder="Nombre Completo" value="">
+                    <input id="emailModa" type="text" placeholder="Email" value="">
+                    <input id="addressModal"  type="text" placeholder="Dirección" value="">
+                    <input id="phoneModal" type="text"placeholder="Telefono"value="">
+                </div>
                 <div class="container-add">
                     <button onclick="closeModal()" type="button" id="add">Cancelar</button>
                 </div>
-                <div id="pendingSales" class="pendingSales"></div>
                 <div class="container-confirm">
                     <button type="button" id="button" onclick="addNewEmployee()">Agregar</button>
                 </div>
             </div>
         </div>
-    </section>  
-    <!-- <div class="tasks-container">
-        <div class="pending-task-container">
-            <ul id="todo" class="pending-task-list">
-            </ul>
-        </div>
-        <div class="completed-task-container">
-            <ul id="completed" class="completed-task-list">
-            </ul>
-        </div>
-    </div> -->
+    </div>  
+
 </body>
 </html>
