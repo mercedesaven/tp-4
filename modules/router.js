@@ -3,10 +3,14 @@ const express = require('express')
 const path = require('path')
 
 
-const user = require('./user')
+const user = require('../api/user')
 const router = express.Router();
 
 
+
+router.get('/', (req, res)=>{
+  res.sendFile(path.join(__dirname,'../pages/index.html'))
+})
 
 router.get('/index', (req, res)=>{
     res.sendFile(path.join(__dirname,'../pages/index.html'))
