@@ -17,11 +17,8 @@ const user = [{
   phone: '1234568765'
 }
 ]
-<<<<<<< HEAD
-=======
 
 
->>>>>>> 4c844adbf7503936a252b045ea56f1cd94a266ae
 
 const printEmployeeList = (emp) => {
   console.log(user)
@@ -47,14 +44,6 @@ const employee = (e) => `
     </ul>
   `
 
-<<<<<<< HEAD
-
-  //Comento ésta función porque creo que la que de abajo incluye ésto:
-/*    const newEmployee = () => {
-    user.unshift(user)
-  } 
- */
-=======
   const removeElement =  () => {
     const elementIndex = document.getElementById('newEmployee')
     alert("Seguro queres borrar?")
@@ -75,7 +64,6 @@ const editElement = () => {
 
 
   
->>>>>>> 4c844adbf7503936a252b045ea56f1cd94a266ae
 
 //AGREGAR INPUT DESDE EL MODAL
 
@@ -110,13 +98,6 @@ const modal = () => {
     closeModal.classList.add('modal')
   }
 
-<<<<<<< HEAD
-
-//ACTIONS BUTTONS: "EDITAR" / "ELIMINAR"
-//MODAL "ADVERTENCIA ELIMINAR" 
-//FILTRAR
-
-=======
   const addNewEmployee = () => {
 /*     let inputModal = document.getElementById('activeModal')
  */    let inputEmployeeName= document.getElementById('nameModal')
@@ -130,4 +111,3 @@ const modal = () => {
   
    
  } 
->>>>>>> 4c844adbf7503936a252b045ea56f1cd94a266ae
