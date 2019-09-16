@@ -1,0 +1,28 @@
+@mixin btnStyles {
+    background-color: #015E9A;
+    color: white;
+    text-decoration: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    border:none;
+  }
+  
+  @mixin stylesHover{
+    background-color: #FFFFFF;
+    color: #015E9A;
+  }
+
+  @mixin  btn-all ($width, $height, $img){
+    width: $width;
+    height: $height;
+    background-repeat: no-repeat;
+    border: 0;
+    background-position: center;
+    border-radius: 50%;
+    background-image: $img;
+    float: right;
+
+    &:hover{
+        background-color: rgb(231, 229, 229);
+    }
+}
