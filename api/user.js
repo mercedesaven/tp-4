@@ -22,7 +22,7 @@ const user = [{
 
 const getUser = (req, res, next) => {
     console.log('pidiendo usuarios')
-    res.json({user})
+    res.json(user)
     next()
 }
 

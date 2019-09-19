@@ -17,7 +17,7 @@ router.get('/index', (req, res)=>{
   })
 
 
-router.get('/api/user', user)/* 
+router.get('/api/user', user.getUser)/* 
 router.get('/api/user/:id', user.getUserByid);
 router.post('/api/user', user.postUser); */
 

@@ -1,33 +1,18 @@
-const user = [{
-  id: '1',
-  name: 'Ada',
-  email: 'ada@gmail.com',
-  address: 'avenida siempreviva 742',
-  phone: '1234567890',
-},
-{
-  id: '2',
-  name: 'Lisa S',
-  email: 'lisa@gmail.com',
-  address: 'calle falsa 123',
-  phone: '1234567890',
-},
-{
-  id: '3',
-  name: 'Papa Pig',
-  email: 'pepa@gmail.com',
-  address: 'calle falsa 123',
-  phone: '1234568765'
-}
-]
+let usersData;
+const initialize = async () => {
+	usersData = await getUser();
+	printEmployeeList(usersData.user);
+};
 
-
+const getUser = () => {
+  return fetch('/api/user').then((res) => res.json()); 
+}  
 
 const printEmployeeList = (emp) => {
-  console.log(user)
+  /* console.log(user) */
   let getEmployee = document.getElementById('container')
   getEmployee.innerHTML = '';
-  user.forEach((e) => {
+  emp.forEach((e) => {
 		getEmployee.innerHTML += employee(e);
 	});
 }    
@@ -58,23 +43,6 @@ const editElement = () => {
   itemName.innerHTML = item1
 }
 
-
-
-
-
-
-
-
-  
-
-
-
-
-
-
-
-  
-
 //Modal
 
 const modal = () => {
@@ -89,26 +57,29 @@ const modal = () => {
     closeModal.classList.add('modal')
   }
   
-  const addNewEmployee = () => {
-    /*     let inputModal = document.getElementById('activeModal')
- */    let inputEmployeeName= document.getElementById('nameModal')
- let newEmployeeName = inputEmployeeName.value
+  const addNewEmployee = (empleado) => {
+    let inputEmployeeName= document.getElementById('nameModal')
+    let newEmployeeName = inputEmployeeName.value
+    newEmployeeName.innerHTML = ""
     let inputEmployeeEmail= document.getElementById('emailModal')
     let newEmployeeEmail = inputEmployeeEmail.value
+    newEmployeeEmail.innerHTML= ''
     let inputEmployeeAddress= document.getElementById('addressModal')
     let newEmployeeAddress = inputEmployeeAddress.value
+    newEmployeeAddress.innerHTML= ''
     let inputEmployeePhone= document.getElementById('phoneModal')
     let newEmployeePhone = inputEmployeePhone.value
+    newEmployeePhone.innerHTML= ''
     if (newEmployeeName === '' || newEmployeeEmail === ''){
       alert("Completa todos los datos")
-    }else {
-      user.unshift(
-        {id: Math.random().toString().substr(2.9),  //https://gist.github.com/gordonbrander/2230317
+    } else {
+       empleado.unshift(
+        {id: Math.random().toString().slice(2,9),  //https://gist.github.com/gordonbrander/2230317
           name: newEmployeeName,
           email: newEmployeeEmail,
           address: newEmployeeAddress,
           phone: newEmployeePhone })
-        closeModal()
-        printEmployeeList()
-      }  
+          closeModal()
+          printEmployeeList()
+      } 
  } 
