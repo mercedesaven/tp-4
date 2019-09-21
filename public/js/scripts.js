@@ -1,15 +1,16 @@
 let usersData;
-const initialize = async () => {
-	usersData = await getUser();
-	printEmployeeList(usersData.user);
-};
+  const initialize = async () => {
+    usersData = await getUser();
+    printEmployeeList(usersData);
+  };
 
 const getUser = () => {
-  return fetch('/api/user').then((res) => res.json()); 
+  return fetch('/api/user')
+    .then((res) => res.json())
+    .then((result) => result.user)
 }  
 
 const printEmployeeList = (emp) => {
-  /* console.log(user) */
   let getEmployee = document.getElementById('container')
   getEmployee.innerHTML = '';
   emp.forEach((e) => {
