@@ -14,9 +14,9 @@ const getUser = () => {
 
 let lastRequest;
 const handleSearch = () => {
-  let id = event.target.value;
-  if ( (event.keyCode === 13 && id !== lastRequest)) {
-    lastRequest = id;
+  let name = event.target.value;
+  if ( (event.keyCode === 13 && name !== lastRequest)) {
+    lastRequest = name;
     userSearch(lastRequest)
     /* return fetch(`/api/user/${id}`)
     .then((res) => res.json())
@@ -24,8 +24,8 @@ const handleSearch = () => {
   }
 };
 
-const userSearch = (id) => {
-  return fetch(`/api/user/${id}`)
+const userSearch = (name) => {
+  return fetch(`/api/user/${name}`)
   .then((res) => res.json())
   .then((result) => console.log(result))
   .then((r) => {

@@ -30,7 +30,7 @@ const getUser = (req, res, next) => {
 }
 
 const getSearchUser= (req, res, next) => {
-  let searchUser = user.find(e => e.id === req.params.id)
+  let searchUser = user.find(e => e.name === req.params.name)
   if (searchUser) {
 		res.json(searchUser);
 	}  else {

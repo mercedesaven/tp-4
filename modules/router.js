@@ -18,7 +18,8 @@ router.get('/index', (req, res)=>{
 
 
   router.get('/api/user', user.getUser) 
-  router.get('/api/user/:id', user.getSearchUser);
+  /* router.get('/api/user/:id', user.getSearchUser) */
+  router.get('/api/user/:name', user.getSearchUser);
   /*router.post('/api/user', user.postUser); */
 
 
