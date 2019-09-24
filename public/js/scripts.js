@@ -10,13 +10,41 @@ const getUser = () => {
     .then((result) => result.user)
 }  
 
+
+
+let lastRequest;
+const handleSearch = () => {
+  let id = event.target.value;
+  if ( (event.keyCode === 13 && id !== lastRequest)) {
+    lastRequest = id;
+    userSearch(lastRequest)
+    /* return fetch(`/api/user/${id}`)
+    .then((res) => res.json())
+    .then((result) => printEmployeeList(result.user)) */
+  }
+};
+
+const userSearch = (id) => {
+  return fetch(`/api/user/${id}`)
+  .then((res) => res.json())
+  .then((result) => console.log(result))
+  .then((r) => {
+    let container = document.getElementById("container-search")
+    r.forEach(e => {
+      let name = document.createElement('p')
+      name.innerText = e.name
+      container.appendChild('name')
+    })
+  } )
+}
 const printEmployeeList = (emp) => {
   let getEmployee = document.getElementById('container')
   getEmployee.innerHTML = '';
   emp.forEach((e) => {
-		getEmployee.innerHTML += employee(e);
+    getEmployee.innerHTML += employee(e);
 	});
 }    
+
 
 const employee = (e) => `
     <ul class="employeeList" id="newEmployee"> 
@@ -32,7 +60,7 @@ const employee = (e) => `
     </ul>
   `
 
-  const removeElement =  () => {
+const removeElement =  () => {
     const elementIndex = document.getElementById('newEmployee')
     alert("Seguro queres borrar?")
     elementIndex.remove()
@@ -84,3 +112,12 @@ const modal = () => {
           printEmployeeList()
       } 
  } 
+ 
+ /* const printQueryResults = (emp) => {
+	const container = document.getElementById('searchUsers');
+	container.innerHTML = '';
+	emp.forEach((id) => {
+   container.innerHTML = employee(id);
+	});
+} */ 
+

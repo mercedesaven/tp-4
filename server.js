@@ -2,7 +2,6 @@ const express = require('express')
 const logger = require('morgan');
 const cors = require('cors');
 const bodyParser = require('body-parser');
-const uniqid = require('uniqid')
 
 const router = require('./modules/router')
 const server = express()
@@ -20,7 +19,7 @@ server.use(logger('dev'));
 server.use(express.static('public'))
 server.use(router)
 server.use(cors);
-server.use(uniqid)
+
 
 
 

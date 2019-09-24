@@ -29,4 +29,15 @@ const getUser = (req, res, next) => {
     next()
 }
 
-module.exports = {getUser}
+const getSearchUser= (req, res, next) => {
+  let searchUser = user.find(e => e.id === req.params.id)
+  if (searchUser) {
+		res.json(searchUser);
+	}  else {
+		res.status(404).send('no encontramos al usuario');
+	} 
+};
+
+
+
+module.exports = {getUser, getSearchUser}
