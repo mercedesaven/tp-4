@@ -1,20 +1,20 @@
 const user = [{
   id: '1',
-  name: 'Ada',
+  name: 'ada',
   email: 'ada@gmail.com',
   address: 'avenida siempreviva 742',
   phone: '1234567890',
 },
 {
   id: '2',
-  name: 'Lisa S',
+  name: 'lisa s',
   email: 'lisa@gmail.com',
   address: 'calle falsa 123',
   phone: '1234567890',
 },
 {
   id: '3',
-  name: 'Papa Pig',
+  name: 'pepa pig',
   email: 'pepa@gmail.com',
   address: 'calle falsa 123',
   phone: '1234568765'

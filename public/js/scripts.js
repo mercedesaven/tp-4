@@ -16,8 +16,10 @@ let lastRequest;
 const handleSearch = () => {
   let name = event.target.value;
   if ( (event.keyCode === 13 && name !== lastRequest)) {
-    lastRequest = name;
+    lastRequest = name.toString().toLowerCase();
     userSearch(lastRequest)
+    printEmployeeList(lastRequest)
+    
     /* return fetch(`/api/user/${id}`)
     .then((res) => res.json())
     .then((result) => printEmployeeList(result.user)) */
@@ -28,14 +30,16 @@ const userSearch = (name) => {
   return fetch(`/api/user/${name}`)
   .then((res) => res.json())
   .then((result) => console.log(result))
-  .then((r) => {
+  /* .then((r) => printEmployeeList(lastRequest)) */
+  
+ /*  .then((r) => {
     let container = document.getElementById("container-search")
-    r.forEach(e => {
+    r.user.forEach(e => {
       let name = document.createElement('p')
       name.innerText = e.name
       container.appendChild('name')
     })
-  } )
+  } ) */
 }
 const printEmployeeList = (emp) => {
   let getEmployee = document.getElementById('container')
