@@ -2,6 +2,7 @@ let usersData;
   const initialize = async () => {
     usersData = await getUser();
     printEmployeeList(usersData);
+    console.log(usersData)
   };
 
 const getUser = () => {
@@ -13,12 +14,18 @@ const getUser = () => {
 
 
 let lastRequest;
-const handleSearch = () => {
+const handleSearch = (r) => {
   let name = event.target.value;
   if ( (event.keyCode === 13 && name !== lastRequest)) {
     lastRequest = name.toString().toLowerCase();
-    userSearch(lastRequest)
-    printEmployeeList(lastRequest)
+    userSearch(lastRequest) 
+/*     let container = document.getElementById("container-search")
+      let name = document.createElement('p')
+      name.innerText = e.name
+      container.appendChild('name') */
+    
+    
+    /* printEmployeeList(lastRequest) */
     
     /* return fetch(`/api/user/${id}`)
     .then((res) => res.json())
@@ -30,17 +37,17 @@ const userSearch = (name) => {
   return fetch(`/api/user/${name}`)
   .then((res) => res.json())
   .then((result) => console.log(result))
-  /* .then((r) => printEmployeeList(lastRequest)) */
   
- /*  .then((r) => {
+/*   .then((r) => {
     let container = document.getElementById("container-search")
-    r.user.forEach(e => {
+
       let name = document.createElement('p')
-      name.innerText = e.name
+      name.innerText = lastRequest
       container.appendChild('name')
-    })
-  } ) */
-}
+    }) */
+  } 
+
+
 const printEmployeeList = (emp) => {
   let getEmployee = document.getElementById('container')
   getEmployee.innerHTML = '';
@@ -52,26 +59,32 @@ const printEmployeeList = (emp) => {
 
 const employee = (e) => `
     <ul class="employeeList" id="newEmployee"> 
-    <li><input type="checkbox"></li>
-    <li class="employeeName checkBtnColor" id="name" onclick="editElement()" > <p>${e.name}</p> </li>
+    <li class="employeeCheckBox"><input type="checkbox"></li>
+    <li class="employeeName" id="name"  > <p>${e.name}</p> </li>
     <li class="employeeEmail" id="email"> <p>${e.email}</p> </li>
     <li class="employeeAdress" id="adress"> <p>${e.address}</p> </li>
     <li class="employeePhone" id="phone"> <p>${e.phone}</p> </li>
     <li class="employeeActions" id="actions">
-      <a class="deleteBtn" onclick="removeElement()"></a>
+      <a class="deleteBtn" onclick="removeElement(this)" id="deleteElement"></a>
+      <a class="checkBtnColor" onclick="onclick="editElement()"></a>
       
     </li>
     </ul>
   `
 
-const removeElement =  () => {
-    const elementIndex = document.getElementById('newEmployee')
+const removeElement =  (e) => {
+    const elementIndex = document.getElementById('deleteElement')
     alert("Seguro queres borrar?")
-    elementIndex.remove()
+    e.map((btn, index) => {
+    elementIndex.id = index
+    elementIndex.splice(btn.id, 1)
+  })
+    initialize()
 }
 
+
 const editElement = () => {
-  let itemName = document.getElementById('name')
+  let itemName = document.getElementById('newEmployee')
   let item1 = prompt("change something: ")
   itemName.innerHTML = item1
 }
@@ -91,37 +104,62 @@ const modal = () => {
   }
   
   const addNewEmployee = (empleado) => {
+    event.preventDefault()
     let inputEmployeeName= document.getElementById('nameModal')
-    let newEmployeeName = inputEmployeeName.value
-    newEmployeeName.innerHTML = ""
     let inputEmployeeEmail= document.getElementById('emailModal')
-    let newEmployeeEmail = inputEmployeeEmail.value
-    newEmployeeEmail.innerHTML= ''
     let inputEmployeeAddress= document.getElementById('addressModal')
-    let newEmployeeAddress = inputEmployeeAddress.value
-    newEmployeeAddress.innerHTML= ''
     let inputEmployeePhone= document.getElementById('phoneModal')
+    let newEmployeeName = inputEmployeeName.value
+    let newEmployeeEmail = inputEmployeeEmail.value
+    let newEmployeeAddress = inputEmployeeAddress.value
     let newEmployeePhone = inputEmployeePhone.value
-    newEmployeePhone.innerHTML= ''
-    if (newEmployeeName === '' || newEmployeeEmail === ''){
-      alert("Completa todos los datos")
-    } else {
-       empleado.unshift(
-        {id: Math.random().toString().slice(2,9),  //https://gist.github.com/gordonbrander/2230317
-          name: newEmployeeName,
-          email: newEmployeeEmail,
-          address: newEmployeeAddress,
-          phone: newEmployeePhone })
-          closeModal()
-          printEmployeeList()
-      } 
- } 
- 
- /* const printQueryResults = (emp) => {
-	const container = document.getElementById('searchUsers');
-	container.innerHTML = '';
-	emp.forEach((id) => {
-   container.innerHTML = employee(id);
-	});
-} */ 
+    
+    const payload = {
+      name: newEmployeeName.toString().toLowerCase(),
+      email: newEmployeeEmail,
+      address: newEmployeeAddress,
+      phone: newEmployeePhone
+    }
+    console.log(payload)
+    fetch(`api/user`, {
+        method:'POST',
+        headers: {
+          'Content-Type':'application/json'
+        },
+        body: JSON.stringify(payload)
+      }) 
+      .then((res) => res.json())
+      .then((result) =>{
+
+      inputEmployeeName= ''
+      inputEmployeeEmail= ''
+      inputEmployeeAddress= ''
+      inputEmployeePhone= ''
+      
+      closeModal()
+      initialize()
+        })
+    }/*  else {
+      alert('Faltan datos')
+    } */
+   
+
+/* let isValid = false;
+const validation = (payload) => {
+	const inputEmployeeName = document.getElementById('nameModal').value;
+	const inputEmployeeEmail = document.getElementById('emailModal').value;
+
+	if (inputEmployeeName !== '' && inputEmployeeName.length > 3 && inputEmployeeName.length < 8) {
+    isValid = true;
+	} else {
+		isValid = false;
+	}
+
+	if (inputEmployeeEmail !== '' && inputEmployeeEmail.length > 3 && inputEmployeeEmail.length < 8) {
+		isValid = true;
+	} else {
+		isValid = false;
+	}
+
+ */	/* isValid ? initialize({name: inputEmployeeName, email: inputEmployeeEmail, address: inputEmployeeAddress, phone: inputEmployeePhone}) : null; */
 

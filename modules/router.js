@@ -18,10 +18,8 @@ router.get('/index', (req, res)=>{
 
 
   router.get('/api/user', user.getUser) 
-  /* router.get('/api/user/:id', user.getSearchUser) */
   router.get('/api/user/:name', user.getSearchUser);
-  /*router.post('/api/user', user.postUser); */
-
+  router.post('/api/user', user.postUser);
 
 router.use((req, res)=>{
     res.status(404).send('pagina no encontrada')

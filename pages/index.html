@@ -14,29 +14,27 @@
 <body onload='initialize()'>
     <header class="add-employee-container">
         <h1>Manage employee</h1>
-        <a href="#" onclick="modal()">
-            <i></i>
-            <span>Add new employee</span>
-        </a>
-        <div class="add-employee-input-container">
-            <input type="text" value="" placeholder="Filter..." id="searchUsers" onkeyup="handleSearch()">
-            <button class="add-employee-btn" type="button" id="add" ><img src="styles/images/add.svg"
-                    alt=""></button>
-            <div id="container-search">
-
-            </div>        
+        <div class="header-container">
+            <a href="#" onclick="modal()">
+                <span>Add new employee</span>
+            </a>
+            <div class="search-employee-input-container">
+                <input type="text" value="" placeholder="Filter..." id="searchUsers" onkeyup="handleSearch()">
+                <button class="search-employee-btn" type="button" id="add" ></button>
+            </div>    
+                
         </div>
     </header>
     
     <div class='main-container'>
         <div class="title-row">  
             <ul class="employeeList">
-                <li><input type="checkbox"></li>
+                <li class="employeeCheckBox"><input type="checkbox"></li>
                 <li>Name</li>
                 <li>Email</li>
                 <li>Adress</li>
                 <li>Phone</li>
-                <li>Actions</li>
+                <li class="employeeActions">Actions</li>
             </ul>
         </div>
         <div id='container' class="container-employee">

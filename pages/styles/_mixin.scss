@@ -1,3 +1,4 @@
+@import "_variables.scss";
 @mixin btnStyles {
     background-color: #015E9A;
     color: white;
@@ -23,6 +24,7 @@
     float: right;
 
     &:hover{
-        background-color: rgb(231, 229, 229);
+        background-color: $white;
+        border: 1px solid $blue;
     }
 }

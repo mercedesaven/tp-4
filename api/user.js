@@ -25,19 +25,31 @@ const user = [{
 
 const getUser = (req, res, next) => {
     console.log('pidiendo usuarios')
-    res.json({user})
+    res.status(200).json({user})
     next()
 }
 
 const getSearchUser= (req, res, next) => {
   let searchUser = user.find(e => e.name === req.params.name)
   if (searchUser) {
-		res.json(searchUser);
+		res.status(200).json(searchUser);
 	}  else {
 		res.status(404).send('no encontramos al usuario');
 	} 
 };
 
 
+const postUser = (req, res, next) => {
+	let data = req.body;
+	if (data.hasOwnProperty('name') && data.hasOwnProperty('email') && data.hasOwnProperty('address') && data.hasOwnProperty('phone')) {
+    data.id = Math.random().toString().slice(2,9)
+    user.push(data)
+		res.status('201').json(`recibido con el id ${data.id}`);
+	} else {
+		res.status('400').json(alert('Todos los campos deben estar completos'));
+	}
+	next();
+};
 
-module.exports = {getUser, getSearchUser}
+
+module.exports = {getUser, getSearchUser, postUser}
