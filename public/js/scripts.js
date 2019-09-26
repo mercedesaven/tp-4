@@ -18,7 +18,15 @@ const handleSearch = () => {
   let name = event.target.value;
   if ( (event.keyCode === 13 && name !== lastRequest)) {
     lastRequest = name.toString().toLowerCase();
+    let searchResults = document.getElementById("results")
+    if (container.style.display === "none") {
+      container.style.display = "block";
+    } else {
+      container.style.display = "none";
+      searchResults.style.display ="block"
+    }
     userSearch(lastRequest)
+    
     }
 };
 
@@ -27,19 +35,38 @@ const handleSearch = () => {
 const userSearch = (name) => {
    fetch(`/api/user/${name}`)
   .then((res) => res.json())
-  .then((result) => console.log(result))
- 
-  } 
-     
-  
+  .then((r) => {
+    console.log(r);
+    
+    let container = document.getElementById("results")
+    r.forEach(e => {
+        container.innerHTML = employee(e)
+        
+    })
+  })
+}
 
 const printEmployeeList = (emp) => {
   let getEmployee = document.getElementById('container')
   getEmployee.innerHTML = '';
   emp.forEach((e) => {
+
     getEmployee.innerHTML += employee(e);
+
 	});
 }    
+
+const seeAll =() =>{
+  let searchResults = document.getElementById("results")
+  if (container.style.display === "none") {
+    container.style.display = "block";
+    searchResults.style.display ="none"
+
+  } else {
+    container.style.display = "none";
+  }
+  initialize()
+} 
 
 
 const employee = (e) => `

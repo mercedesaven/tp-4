@@ -20,8 +20,8 @@
             </a>
             <div class="search-employee-input-container">
                 <input type="text" value="" placeholder="Filter..." id="searchUsers" onkeyup="handleSearch()">
-<!--                 <button class="search-employee-btn" type="button" id="add" ></button>
- -->            </div>    
+            </div>    
+            <button class="search-employee-btn" type="button" id="add" onclick="seeAll()"><span>Volver a la lista de resultados</span></button>
                 
         </div>
     </header>
@@ -37,27 +37,15 @@
                 <li class="employeeActions">Actions</li>
             </ul>
         </div>
+        <div class="search-result" id="results">
+        </div>
         <div id='container' class="container-employee">
-            <ul id='newEmployee' class="employeeList">
-            </ul>
-        </div>       
+          
+        </div>
+
+              
     </div>
-   <div id="search-results">
-        <div class="title-row">  
-                <ul class="employeeList">
-                    <li class="employeeCheckBox"><input type="checkbox"></li>
-                    <li>Name</li>
-                    <li>Email</li>
-                    <li>Adress</li>
-                    <li>Phone</li>
-                    <li class="employeeActions">Actions</li>
-                </ul>
-            </div>
-            <div id='container' class="container-employee">
-                <ul id='newEmployee' class="employeeList">
-                </ul>
-            </div>
-   </div>
+   
     
     <div class="modal" id="activeModal">
         <div class="contain-modal-select">
