@@ -116,11 +116,6 @@ h2 {
   align-content: center;
   overflow: hidden;
 }
-.main-container .employeeList .employeeCheckBox {
-  width: 20px;
-  display: flex;
-  align-items: center;
-}
 .main-container .employeeList .employeeActions {
   display: flex;
   justify-content: space-evenly;

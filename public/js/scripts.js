@@ -12,7 +12,7 @@ const getUser = () => {
 }  
 
 
-let userSearchData = []
+
 let lastRequest;
 const handleSearch = () => {
   let name = event.target.value;
@@ -71,35 +71,68 @@ const seeAll =() =>{
 
 const employee = (e) => `
     <ul class="employeeList" id="newEmployee"> 
-    <li class="employeeCheckBox"><input type="checkbox"></li>
     <li class="employeeName" id="name"  > <p>${e.name}</p> </li>
     <li class="employeeEmail" id="email"> <p>${e.email}</p> </li>
     <li class="employeeAdress" id="adress"> <p>${e.address}</p> </li>
     <li class="employeePhone" id="phone"> <p>${e.phone}</p> </li>
     <li class="employeeActions" id="actions">
-      <a class="deleteBtn" onclick="removeElement(this)" id="deleteElement"></a>
-      <a class="checkBtnColor" onclick="onclick="editElement()"></a>
+      <a class="deleteBtn" onclick="removeElement(${e.id})" id="deleteElement"></a>
+      <a class="checkBtnColor" onclick="editElement(${e.id})"></a>
       
     </li>
     </ul>
   `
 
-const removeElement =  (e) => {
-    const elementIndex = document.getElementById('deleteElement')
+/* const removeElement =  (e) => {
+    const elementIndex = document.getElementById('newEmployee')
     alert("Seguro queres borrar?")
-    e.map((btn, index) => {
-    elementIndex.id = index
-    elementIndex.splice(btn.id, 1)
+    elementIndex.remove()
+   
+    
+} */
+
+var removeElement = (btn, index) => {
+  let btnDelete = document.getElementById("deleteElement")
+  btnDelete.id = index
+  /* let deleteItem = confirm('¿Estás segurx de borrar esta tarea?') */;
+  if (btnDelete){
+  usersData.splice(btnDelete.id, 1)
+      ;
+  } else {
+ false;
+  }
+}
+
+
+const editElement = (id) => {
+  let inputEmployeeName= document.getElementById('name')
+    let inputEmployeeEmail= document.getElementById('email')
+    let inputEmployeeAddress= document.getElementById('address')
+    let inputEmployeePhone= document.getElementById('phone')
+    let newEmployeeName = inputEmployeeName.value
+    let newEmployeeEmail = inputEmployeeEmail.value
+/*  let newEmployeeAddress = inputEmployeeAddress.value
+ */    let newEmployeePhone = inputEmployeePhone.value
+    
+    const payload = {
+      name: newEmployeeName,
+      email: newEmployeeEmail,
+/*    address: newEmployeeAddress,
+ */   phone: newEmployeePhone
+    }
+	fetch(`api/user/${id}`, {
+		method: 'PATCH',
+		headers: {
+			'Content-Type': 'application/json'
+		},
+		body: JSON.stringify(payload)
   })
-    initialize()
-}
+  
+
+};
 
 
-const editElement = () => {
-  let itemName = document.getElementById('newEmployee')
-  let item1 = prompt("change something: ")
-  itemName.innerHTML = item1
-}
+
 
 //Modal
 
@@ -134,15 +167,15 @@ const modal = () => {
     }
     console.log(payload)
     fetch(`api/user`, {
-        method:'POST',
-        headers: {
-          'Content-Type':'application/json'
-        },
-        body: JSON.stringify(payload)
+      method:'POST',
+      headers: {
+        'Content-Type':'application/json'
+      },
+      body: JSON.stringify(payload)
       }) 
       .then((res) => res.json())
       .then((result) =>{
-
+        
       inputEmployeeName= ''
       inputEmployeeEmail= ''
       inputEmployeeAddress= ''
@@ -150,14 +183,16 @@ const modal = () => {
       
       closeModal()
       initialize()
-        })
-    }/*  else {
+    })/* 
+    if (isValid(payload)){
+    }else {
       alert('Faltan datos')
-    } */
-   
+    }  */
+  }
+  
+ /*    const validation = () => {
+  let isValid = false;
 
-/* let isValid = false;
-const validation = (payload) => {
 	const inputEmployeeName = document.getElementById('nameModal').value;
 	const inputEmployeeEmail = document.getElementById('emailModal').value;
 
@@ -173,5 +208,6 @@ const validation = (payload) => {
 		isValid = false;
 	}
 
- */	/* isValid ? initialize({name: inputEmployeeName, email: inputEmployeeEmail, address: inputEmployeeAddress, phone: inputEmployeePhone}) : null; */
-
+  isValid ? addNewEmployee({name: inputEmployeeName, email: inputEmployeeEmail, address: inputEmployeeAddress, phone: inputEmployeePhone}) : null; 
+}
+ */
