@@ -33,7 +33,7 @@ const handleSearch = () => {
 
 
 const userSearch = (name) => {
-   fetch(`/api/user/${name}`)
+   fetch(`/api/user/search/${name}`)
   .then((res) => res.json())
   .then((r) => {
     console.log(r);
