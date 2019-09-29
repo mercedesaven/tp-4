@@ -38,6 +38,7 @@ body {
     a span{
       margin: 25px 0;
       line-height: 32px;
+      display: flex;
       border: 1px solid $blue;
       padding: 15px;
       color: $blue;
@@ -60,6 +61,7 @@ body {
         font-size: 14px;
         height: 40px;
         box-sizing: border-box;
+        margin: 0 10px;
         color: $black;
         font-family: "Raleway", sans-serif;
         &::placeholder {

@@ -39,10 +39,25 @@ const getSearchUser= (req, res, next) => {
 	} 
 };
 
+const deleteId= (req, res, next) => {
+  
+  let searchUser = user.find(e => e.id === req.params.id)
+  
+  
+  if (searchUser) {
+    res.status(200).json(searchUser)
+    res.splice(1, searchUser);
+    
+    console.log(res)
+	}  else {
+		res.status(404).send('no encontramos al usuario');
+	} 
+};
+
+
 const getId= (req, res, next) => {
-  console.log('kdfnjskdj', req.params.id);
+  
   let searchUser = user.filter(e => e.id === req.params.id)
-  console.log(searchUser);
   
   if (searchUser) {
 		res.status(200).json(searchUser);
@@ -86,4 +101,4 @@ const patchtUser = (req, res, next) => {
 }
 
 
-module.exports = {getUser, getSearchUser, postUser, patchtUser, getId}
+module.exports = {getUser, getSearchUser, postUser, patchtUser, getId, deleteId}

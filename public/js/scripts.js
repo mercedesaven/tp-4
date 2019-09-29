@@ -73,7 +73,7 @@ const employee = (e) => `
     <ul class="employeeList" id="newEmployee"> 
     <li class="employeeName" id="name"  > <p>${e.name}</p> </li>
     <li class="employeeEmail" id="email"> <p>${e.email}</p> </li>
-    <li class="employeeAdress" id="adress"> <p>${e.address}</p> </li>
+    <li class="employeeAdress" id="address"> <p>${e.address}</p> </li>
     <li class="employeePhone" id="phone"> <p>${e.phone}</p> </li>
     <li class="employeeActions" id="actions">
       <a class="deleteBtn" onclick="removeElement(${e.id})" id="deleteElement"></a>
@@ -83,26 +83,34 @@ const employee = (e) => `
     </ul>
   `
 
-/* const removeElement =  (e) => {
-    const elementIndex = document.getElementById('newEmployee')
-    alert("Seguro queres borrar?")
-    elementIndex.remove()
-   
-    
-} */
+var removeElement = (emp) => {
+  console.log(emp)
+  //alert('¿Estás segurx de borrar este usuario?')
+  let inputEmployeeName= document.getElementById('name')
+    let inputEmployeeEmail= document.getElementById('email')
+    let inputEmployeeAddress= document.getElementById('address')
+    let inputEmployeePhone= document.getElementById('phone')
 
-var removeElement = (btn, index) => {
-  let btnDelete = document.getElementById("deleteElement")
-  btnDelete.id = index
-  /* let deleteItem = confirm('¿Estás segurx de borrar esta tarea?') */;
-  if (btnDelete){
-  usersData.splice(btnDelete.id, 1)
-      ;
-  } else {
- false;
+  const payload = {
+    name: inputEmployeeName.value,
+    email: inputEmployeeEmail.value,
+    address: inputEmployeeAddress.value,
+    phone: inputEmployeePhone.value,
   }
+fetch(`/api/user/delete/1`, {
+  method: 'DELETE',
+  headers: {
+    'Content-Type': 'application/json'
+  },
+  body: JSON.stringify(payload)
+})
+  .then((res) => res.json())
+  .then((result) => {
+    //result.splice(1,1)
+    console.log(result)
+   initialize()})
 }
-
+    
 
 const editElement = (id) => {
   let inputEmployeeName= document.getElementById('name')
@@ -111,14 +119,14 @@ const editElement = (id) => {
     let inputEmployeePhone= document.getElementById('phone')
     let newEmployeeName = inputEmployeeName.value
     let newEmployeeEmail = inputEmployeeEmail.value
-/*  let newEmployeeAddress = inputEmployeeAddress.value
- */    let newEmployeePhone = inputEmployeePhone.value
+    let newEmployeeAddress = inputEmployeeAddress.value
+    let newEmployeePhone = inputEmployeePhone.value
     
     const payload = {
       name: newEmployeeName,
       email: newEmployeeEmail,
-/*    address: newEmployeeAddress,
- */   phone: newEmployeePhone
+      address: newEmployeeAddress,
+     phone: newEmployeePhone
     }
 	fetch(`api/user/${id}`, {
 		method: 'PATCH',

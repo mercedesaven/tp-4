@@ -52,6 +52,7 @@ h2 {
 .header-container a span {
   margin: 25px 0;
   line-height: 32px;
+  display: flex;
   border: 1px solid #0099ff;
   padding: 15px;
   color: #0099ff;
@@ -75,6 +76,7 @@ h2 {
   font-size: 14px;
   height: 40px;
   box-sizing: border-box;
+  margin: 0 10px;
   color: #333333;
   font-family: "Raleway", sans-serif;
 }
