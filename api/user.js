@@ -41,14 +41,17 @@ const getSearchUser= (req, res, next) => {
 
 const deleteId= (req, res, next) => {
   
-  let searchUser = user.find(e => e.id === req.params.id)
+  let index=""
+  let searchUser = user.filter((e, i) => {
+    index = i
+    return e.id === req.params.id})
   
   
   if (searchUser) {
-    res.status(200).json(searchUser)
-    res.splice(1, searchUser);
+    res.status(200).json(user)
+    user.splice(1, index);
     
-    console.log(res)
+    
 	}  else {
 		res.status(404).send('no encontramos al usuario');
 	} 
