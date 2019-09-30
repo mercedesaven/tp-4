@@ -83,8 +83,8 @@ const employee = (e) => `
     </ul>
   `
 
-var removeElement = (emp) => {
-  console.log(emp)
+var removeElement = (id) => {
+
   //alert('¿Estás segurx de borrar este usuario?')
   let inputEmployeeName= document.getElementById('name')
     let inputEmployeeEmail= document.getElementById('email')
@@ -97,7 +97,7 @@ var removeElement = (emp) => {
     address: inputEmployeeAddress.value,
     phone: inputEmployeePhone.value,
   }
-fetch(`/api/user/delete/1`, {
+fetch(`/api/user/delete/${id}`, {
   method: 'DELETE',
   headers: {
     'Content-Type': 'application/json'
@@ -166,7 +166,10 @@ const modal = () => {
     let newEmployeeEmail = inputEmployeeEmail.value
     let newEmployeeAddress = inputEmployeeAddress.value
     let newEmployeePhone = inputEmployeePhone.value
-    
+      inputEmployeeName.innerHTML= ''
+      inputEmployeeEmail.innerHTML= ''
+      inputEmployeeAddress.innerHTML= ''
+      inputEmployeePhone.innerHTML= ''
     const payload = {
       name: newEmployeeName.toString().toLowerCase(),
       email: newEmployeeEmail,
@@ -184,19 +187,20 @@ const modal = () => {
       .then((res) => res.json())
       .then((result) =>{
         
-      inputEmployeeName= ''
-      inputEmployeeEmail= ''
-      inputEmployeeAddress= ''
-      inputEmployeePhone= ''
+        
+        closeModal()
+        initialize()
+      })
       
-      closeModal()
-      initialize()
-    })/* 
+      
+    
+  }
+    /* 
     if (isValid(payload)){
     }else {
       alert('Faltan datos')
     }  */
-  }
+  
   
  /*    const validation = () => {
   let isValid = false;

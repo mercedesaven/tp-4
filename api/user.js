@@ -48,8 +48,8 @@ const deleteId= (req, res, next) => {
   
   
   if (searchUser) {
+    user.splice(index, 1);
     res.status(200).json(user)
-    user.splice(1, index);
     
     
 	}  else {
@@ -95,7 +95,7 @@ const patchtUser = (req, res, next) => {
     console.log('resusersdbhfkha', resUser);
     
 		let editedUser = { ...resUser, ...data };
-		user.splice(1, index);
+		user.splice(index,1);
     user.push(editedUser);
     res.status(200).json({data})
 	} else {
