@@ -18,7 +18,10 @@ router.get('/index', (req, res)=>{
 
 
   router.get('/api/user', user.getUser) 
-  router.get('/api/user/:name', user.getSearchUser);
+  router.get('/api/user/search/:name', user.getSearchUser);
+  router.get('/api/user/:id', user.getId)
+  router.delete('/api/user/delete/:id', user.deleteId)
+  router.patch('/api/user/:id', user.patchtUser);
   router.post('/api/user', user.postUser);
 
 router.use((req, res)=>{

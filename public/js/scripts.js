@@ -12,67 +12,142 @@ const getUser = () => {
 }  
 
 
-let userSearchData = []
+
 let lastRequest;
 const handleSearch = () => {
   let name = event.target.value;
   if ( (event.keyCode === 13 && name !== lastRequest)) {
     lastRequest = name.toString().toLowerCase();
+    let searchResults = document.getElementById("results")
+    if (container.style.display === "none") {
+      container.style.display = "block";
+    } else {
+      container.style.display = "none";
+      searchResults.style.display ="block"
+    }
     userSearch(lastRequest)
+    
     }
 };
 
 
 
 const userSearch = (name) => {
-   fetch(`/api/user/${name}`)
+   fetch(`/api/user/search/${name}`)
   .then((res) => res.json())
-  .then((result) => console.log(result))
- 
-  } 
-     
-  
+  .then((r) => {
+    console.log(r);
+    
+    let container = document.getElementById("results")
+    r.forEach(e => {
+        container.innerHTML = employee(e)
+        
+    })
+  })
+}
 
 const printEmployeeList = (emp) => {
   let getEmployee = document.getElementById('container')
   getEmployee.innerHTML = '';
   emp.forEach((e) => {
+
     getEmployee.innerHTML += employee(e);
+
 	});
 }    
+
+const seeAll =() =>{
+  let searchResults = document.getElementById("results")
+  if (container.style.display === "none") {
+    container.style.display = "block";
+    searchResults.style.display ="none"
+
+  } else {
+    container.style.display = "none";
+  }
+  initialize()
+} 
 
 
 const employee = (e) => `
     <ul class="employeeList" id="newEmployee"> 
-    <li class="employeeCheckBox"><input type="checkbox"></li>
     <li class="employeeName" id="name"  > <p>${e.name}</p> </li>
     <li class="employeeEmail" id="email"> <p>${e.email}</p> </li>
-    <li class="employeeAdress" id="adress"> <p>${e.address}</p> </li>
+    <li class="employeeAdress" id="address"> <p>${e.address}</p> </li>
     <li class="employeePhone" id="phone"> <p>${e.phone}</p> </li>
     <li class="employeeActions" id="actions">
-      <a class="deleteBtn" onclick="removeElement(this)" id="deleteElement"></a>
-      <a class="checkBtnColor" onclick="onclick="editElement()"></a>
+      <a class="deleteBtn" onclick="removeElement(${e.id})" id="deleteElement"></a>
+      <a class="checkBtnColor" onclick="editElement(${e.id})"></a>
       
     </li>
     </ul>
   `
 
-const removeElement =  (e) => {
-    const elementIndex = document.getElementById('deleteElement')
-    alert("Seguro queres borrar?")
-    e.map((btn, index) => {
-    elementIndex.id = index
-    elementIndex.splice(btn.id, 1)
+  //eliminar
+
+var removeElement = (id) => {
+
+  alert('¿Estás segurx de borrar este usuario?')
+  let inputEmployeeName= document.getElementById('name')
+    let inputEmployeeEmail= document.getElementById('email')
+    let inputEmployeeAddress= document.getElementById('address')
+    let inputEmployeePhone= document.getElementById('phone')
+
+  const payload = {
+    name: inputEmployeeName.value,
+    email: inputEmployeeEmail.value,
+    address: inputEmployeeAddress.value,
+    phone: inputEmployeePhone.value,
+  }
+fetch(`/api/user/delete/${id}`, {
+  method: 'DELETE',
+  headers: {
+    'Content-Type': 'application/json'
+  },
+  body: JSON.stringify(payload)
+})
+  .then((res) => res.json())
+  .then((result) => {
+
+   initialize()})
+}
+    
+// editar
+const editElement = (id) => {
+  let inputEmployeeName= document.getElementById('name')
+    let inputEmployeeEmail= document.getElementById('email')
+    let inputEmployeeAddress= document.getElementById('address')
+    let inputEmployeePhone= document.getElementById('phone')
+    let newEmployeeName = inputEmployeeName.value
+    let newEmployeeEmail = inputEmployeeEmail.value
+    let newEmployeeAddress = inputEmployeeAddress.value
+    let newEmployeePhone = inputEmployeePhone.value
+    
+    const payload = {
+      name: newEmployeeName,
+      email: newEmployeeEmail,
+      address: newEmployeeAddress,
+     phone: newEmployeePhone
+    }
+	fetch(`api/user/${id}`, {
+		method: 'PATCH',
+		headers: {
+			'Content-Type': 'application/json'
+		},
+		body: JSON.stringify(payload)
   })
-    initialize()
-}
+  .then((res) => res.json())
+  .then((result) => {
+    modal(payload)
+
+   initialize()})
+
+  
+
+};
 
 
-const editElement = () => {
-  let itemName = document.getElementById('newEmployee')
-  let item1 = prompt("change something: ")
-  itemName.innerHTML = item1
-}
+
 
 //Modal
 
@@ -87,64 +162,78 @@ const modal = () => {
     closeModal.classList.remove('activeModal')
     closeModal.classList.add('modal')
   }
+
+// validacion
+
+  const validation = (e) => {
+    if (e.length >3) {
+      return true
+  }else {
+    return false
+  }
+  }
   
-  const addNewEmployee = (empleado) => {
+  
+   let validEmail = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+  const emailValid = (e) => {
+    validEmail.test(e)
+  } 
+
+  
+
+const numberValid = (num) => {
+  let validNumber = /^([0-9])*$/
+     return validNumber.test(num)
+  }
+  
+
+// nuevo empleado 
+
+  const addNewEmployee = () => {
     event.preventDefault()
     let inputEmployeeName= document.getElementById('nameModal')
     let inputEmployeeEmail= document.getElementById('emailModal')
     let inputEmployeeAddress= document.getElementById('addressModal')
     let inputEmployeePhone= document.getElementById('phoneModal')
+
     let newEmployeeName = inputEmployeeName.value
     let newEmployeeEmail = inputEmployeeEmail.value
     let newEmployeeAddress = inputEmployeeAddress.value
     let newEmployeePhone = inputEmployeePhone.value
-    
-    const payload = {
-      name: newEmployeeName.toString().toLowerCase(),
-      email: newEmployeeEmail,
-      address: newEmployeeAddress,
-      phone: newEmployeePhone
-    }
-    console.log(payload)
-    fetch(`api/user`, {
-        method:'POST',
-        headers: {
-          'Content-Type':'application/json'
-        },
-        body: JSON.stringify(payload)
-      }) 
-      .then((res) => res.json())
-      .then((result) =>{
 
-      inputEmployeeName= ''
-      inputEmployeeEmail= ''
-      inputEmployeeAddress= ''
-      inputEmployeePhone= ''
+   /*  if (validation(newEmployeeName) && validation(newEmployeeAddress) && numberValid(newEmployeePhone) && validateEmail(newEmployeeEmail)) 
+      {
+ */
+
+      const payload = {
+        name: newEmployeeName.toString().toLowerCase(),
+        email: newEmployeeEmail,
+        address: newEmployeeAddress,
+        phone: newEmployeePhone
+      }
+    fetch(`api/user`, {
+      method:'POST',
+      headers: {
+        'Content-Type':'application/json'
+      },
+      body: JSON.stringify(payload)
+    }) 
+    .then((res) => res.json())
+    .then((result) =>{
+      inputEmployeeName.value= ''
+      inputEmployeeEmail.value= ''
+      inputEmployeeAddress.value= ''
+      inputEmployeePhone.value= ''
       
       closeModal()
       initialize()
-        })
-    }/*  else {
-      alert('Faltan datos')
-    } */
-   
+     
+    })
+    /* }  else {
+    alert('Campos incompletos')
+  }  */
+     
+  }
 
-/* let isValid = false;
-const validation = (payload) => {
-	const inputEmployeeName = document.getElementById('nameModal').value;
-	const inputEmployeeEmail = document.getElementById('emailModal').value;
 
-	if (inputEmployeeName !== '' && inputEmployeeName.length > 3 && inputEmployeeName.length < 8) {
-    isValid = true;
-	} else {
-		isValid = false;
-	}
-
-	if (inputEmployeeEmail !== '' && inputEmployeeEmail.length > 3 && inputEmployeeEmail.length < 8) {
-		isValid = true;
-	} else {
-		isValid = false;
-	}
-
- */	/* isValid ? initialize({name: inputEmployeeName, email: inputEmployeeEmail, address: inputEmployeeAddress, phone: inputEmployeePhone}) : null; */
-
+  

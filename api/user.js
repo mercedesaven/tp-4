@@ -30,7 +30,8 @@ const getUser = (req, res, next) => {
 }
 
 const getSearchUser= (req, res, next) => {
-  let searchUser = user.find(e => e.name === req.params.name)
+  let searchUser = user.filter(e => e.name === req.params.name)
+  
   if (searchUser) {
 		res.status(200).json(searchUser);
 	}  else {
@@ -38,6 +39,35 @@ const getSearchUser= (req, res, next) => {
 	} 
 };
 
+const deleteId= (req, res, next) => {
+  
+  let index=""
+  let searchUser = user.find((e, i) => {
+    index = i
+    return e.id === req.params.id})
+  
+  
+  if (searchUser) {
+    user.splice(index, 1);
+    res.status(200).json(user)
+    
+    
+	}  else {
+		res.status(404).send('no encontramos al usuario');
+	} 
+};
+
+
+const getId= (req, res, next) => {
+  
+  let searchUser = user.filter(e => e.id === req.params.id)
+  
+  if (searchUser) {
+		res.status(200).json(searchUser);
+	}  else {
+		res.status(404).send('no encontramos al usuario');
+	} 
+};
 
 const postUser = (req, res, next) => {
 	let data = req.body;
@@ -51,5 +81,27 @@ const postUser = (req, res, next) => {
 	next();
 };
 
+const patchtUser = (req, res, next) => {
+  let data = req.body;
+  console.log('data', data);
+  
+	let index = '';
+	let resUser = user.find((e, i) => {
+    index = i;
+    return e.id === req.params.id;
+	});
 
-module.exports = {getUser, getSearchUser, postUser}
+	if (resUser) {
+    console.log('resusersdbhfkha', resUser);
+    
+		let editedUser = { ...resUser, ...data };
+		user.splice(index,1);
+    user.push(editedUser);
+    res.status(200).json({data})
+	} else {
+		res.status(404).send('no encontramos al usuario');
+	}
+}
+
+
+module.exports = {getUser, getSearchUser, postUser, patchtUser, getId, deleteId}

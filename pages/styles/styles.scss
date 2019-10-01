@@ -19,6 +19,7 @@ body {
   .add-employee-container {
     width: 90%;
     margin: auto;
+
     h1 {
       color: $blue;
       margin: 25px 0;
@@ -33,9 +34,11 @@ body {
     display: flex;
     flex-direction: row;
     justify-content: space-around;
+    align-items: center;
     a span{
       margin: 25px 0;
       line-height: 32px;
+      display: flex;
       border: 1px solid $blue;
       padding: 15px;
       color: $blue;
@@ -47,7 +50,7 @@ body {
     }
     .search-employee-input-container {
       display: flex;
-      justify-content: space-between;
+      flex-direction: column;
       input {
         border: 1px;
         border-color: $grey;
@@ -58,30 +61,35 @@ body {
         font-size: 14px;
         height: 40px;
         box-sizing: border-box;
+        margin: 0 10px;
         color: $black;
         font-family: "Raleway", sans-serif;
         &::placeholder {
           color: $grey;
         }
        }
-      .search-employee-btn {
-        background-color: $blue;
-        padding: 10px 12px;
-        background-size: 18px, 18px;
-        @include btn-all(40px, 40px, url("images/searchIcon.png") );
-
       }
-    }
+        .search-employee-btn {
+          background-color: $blue;
+          padding: 10px 12px;
+          background-size: 18px, 18px;
+          color: $white;
+          font-weight: bold;
+          
+  
+        }
   }
 
-.main-container{
+.main-container {
   margin: 30px 30px;
-  width: 90%;
- 
 
+ 
+.search-result {
+  display: none;
+}
     .title-row{
       ul li {
-        width: 70px;
+        width: 200px;
         height: 30px;
       }
 
@@ -94,7 +102,7 @@ body {
         display: flex;
         justify-content: space-evenly;
         li {
-          width: 70px;
+          width: 200px;
           height: 30px;
           text-align: left;
           padding: 0 10px;
@@ -102,11 +110,6 @@ body {
           align-content: center;
           overflow: hidden;
 
-         }
-         .employeeCheckBox{
-          width: 20px;
-          display: flex;
-          align-items: center;
          }
           .employeeActions{
            display: flex;
@@ -124,6 +127,7 @@ body {
 }
   
   }
+
   
   //MODAL
 
