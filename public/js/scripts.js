@@ -85,7 +85,7 @@ const employee = (e) => `
 
 var removeElement = (id) => {
 
-  //alert('¿Estás segurx de borrar este usuario?')
+  alert('¿Estás segurx de borrar este usuario?')
   let inputEmployeeName= document.getElementById('name')
     let inputEmployeeEmail= document.getElementById('email')
     let inputEmployeeAddress= document.getElementById('address')
@@ -106,8 +106,7 @@ fetch(`/api/user/delete/${id}`, {
 })
   .then((res) => res.json())
   .then((result) => {
-    //result.splice(1,1)
-    console.log(result)
+
    initialize()})
 }
     
@@ -166,10 +165,6 @@ const modal = () => {
     let newEmployeeEmail = inputEmployeeEmail.value
     let newEmployeeAddress = inputEmployeeAddress.value
     let newEmployeePhone = inputEmployeePhone.value
-      inputEmployeeName.innerHTML= ''
-      inputEmployeeEmail.innerHTML= ''
-      inputEmployeeAddress.innerHTML= ''
-      inputEmployeePhone.innerHTML= ''
     const payload = {
       name: newEmployeeName.toString().toLowerCase(),
       email: newEmployeeEmail,
@@ -183,15 +178,19 @@ const modal = () => {
         'Content-Type':'application/json'
       },
       body: JSON.stringify(payload)
-      }) 
-      .then((res) => res.json())
-      .then((result) =>{
-        
-        
-        closeModal()
-        initialize()
-      })
+    }) 
+    .then((res) => res.json())
+    .then((result) =>{
+      inputEmployeeName.value= ''
+      inputEmployeeEmail.value= ''
+      inputEmployeeAddress.value= ''
+      inputEmployeePhone.value= ''
       
+      closeModal()
+      initialize()
+     
+    })
+    
       
     
   }

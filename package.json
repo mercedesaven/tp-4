@@ -3,8 +3,8 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "start": "node server.js",
-    "go": "nodemon server.js",
+    "go": "node server.js",
+    "start": "nodemon server.js",
     "build-css": "sass pages/styles/styles.scss public/styles/styles.css --watch"
   },
   "repository": {

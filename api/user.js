@@ -42,7 +42,7 @@ const getSearchUser= (req, res, next) => {
 const deleteId= (req, res, next) => {
   
   let index=""
-  let searchUser = user.filter((e, i) => {
+  let searchUser = user.find((e, i) => {
     index = i
     return e.id === req.params.id})
   
